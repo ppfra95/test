@@ -1,0 +1,23 @@
+docker-compose run app sh -c "python manage.py test"
+docker-compose run app sh -c "django-admin.py startproject app ." *crea las carpetas iniciales del proyecto en django
+git add .
+git commit -a
+git push origin
+docker-compose run app sh -c "python manage.py startapp core" *aplicacion central del proyecto
+docker-compose run app sh -c "python manage.py makemigrations core"
+
+docker exec -it recipe-app-api
+python manage.py dbshell
+
+\l lista de db
+\lt lista de tablas
+\d "tabla" mostrar estructura
+https://caronates.wordpress.com/2010/01/12/comandos-para-postgres/
+
+SELECT * FROM pg_catalog.pg_tables; lista de tablas
+SELECT * FROM "TABLA"; mostrar datos de la tabla
+
+py .m venv ENV
+.\ENV\scripts\activate
+
+platdormio-ide-terminal
