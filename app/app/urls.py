@@ -18,5 +18,5 @@ from django.contrib import admin
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('core/', include('core.urls')),
+    path('plantillas/', include('ejemplo.urls')),
 ]
