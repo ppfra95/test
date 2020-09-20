@@ -9,9 +9,10 @@ https://docs.djangoproject.com/en/3.1/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.1/ref/settings/
 """
-import mongoengine
-
 from pathlib import Path
+import sys
+import os
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -32,16 +33,19 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'django_mongoengine.mongo_admin',
+    'django_mongoengine.mongo_auth',
     'django.contrib.admin',
+
     'django.contrib.auth',
+
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'rest_framework',
-    'rest_framework_mongoengine',
+    'django_mongoengine',
     'core',
-    'pedidos',
+    'gestionOfOrders',
 ]
 
 MIDDLEWARE = [
@@ -59,13 +63,17 @@ ROOT_URLCONF = 'tiendaOnline.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(os.path.realpath(os.path.dirname(__file__)), '../templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
-                'django.template.context_processors.debug',
-                'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
+                'django.template.context_processors.debug',
+                'django.template.context_processors.i18n',
+                'django.template.context_processors.media',
+                'django.template.context_processors.request',
+                'django.template.context_processors.static',
+                'django.template.context_processors.tz',
                 'django.contrib.messages.context_processors.messages',
             ],
         },
@@ -74,24 +82,31 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'tiendaOnline.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
 DATABASES = {
     'default': {
-        # 'ENGINE': 'djongo',
-        # 'NAME': 'tiendaOnline',
-        # 'HOST': 'mongodb+srv://Jose:9809028JXV@cluster0.fr8u7.mongodb.net/tiendaOnline?retryWrites=true&w=majority',
-        # 'USER': 'Jose',
-        # 'PASSWORD': '9809028JXV',
-        # 'PORT': '27017',
-        'ENGINE': '',
+        'ENGINE':'django.db.backends.dummy',
+    }
+}
+
+MONGODB_DATABASES = {
+    "default": {
+        "name": 'tiendaOnline',
+        "host":'mongodb+srv://Jose:9809028JXV@cluster0.fr8u7.mongodb.net/tiendaOnline?retryWrites=true&w=majority',
+        "password": '9809028JXV',
+        "username": 'Jose',
+        "tz_aware": True, # if you using timezones in django (USE_TZ = True)
     },
 }
-MONGO_NAME = 'tiendaOnline'
-MONGO_DATABASE_HOST = 'mongodb+srv://Jose:9809028JXV@cluster0.fr8u7.mongodb.net/tiendaOnline?retryWrites=true&w=majority'
-mongoengine.connect(MONGO_NAME, host=MONGO_DATABASE_HOST)
+AUTH_USER_MODEL = 'mongo_auth.MongoUser'
+MONGOENGINE_USER_DOCUMENT = 'core.models.adminUser'
+AUTHENTICATION_BACKENDS = (
+    'django_mongoengine.mongo_auth.backends.MongoEngineBackend',
+)
+SESSION_ENGINE = 'django_mongoengine.sessions'
+SESSION_SERIALIZER = 'django_mongoengine.sessions.BSONSerializer'
 
 # Password validation
 # https://docs.djangoproject.com/en/3.1/ref/settings/#auth-password-validators

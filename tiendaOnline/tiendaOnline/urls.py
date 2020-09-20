@@ -15,8 +15,10 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from django_mongoengine import mongo_admin
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('pedidos/', include('pedidos.urls')),
+    # path('admin/', admin.site.urls),
+    path('admin/', mongo_admin.site.urls),
+    path('orders/', include('gestionOfOrders.urls')),
 ]
