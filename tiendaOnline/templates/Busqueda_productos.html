@@ -1,0 +1,9 @@
+<!DOCTYPE html>
+{% extends "Base.html" %}
+
+{% block content %}
+  {% include "barra.html"%}
+  <form action="/orders/buscar/" method="GET" style="text-align:right">
+    <input type="text" name="prd">
+    <input type="submit" value="Buscar">
+{% endblock %}

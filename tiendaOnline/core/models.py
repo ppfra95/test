@@ -1,34 +1,41 @@
-from django_mongoengine import Document, fields
+from django_mongoengine import document, fields
 from django_mongoengine.mongo_auth.models import User
 from mongoengine import *
 
 
+class Customer(document.Document):
+    name = fields.StringField(max_length=30,verbose_name='Nombre')
+    last_Name = fields.StringField(max_length=30)
+    address = fields.StringField(max_length=30)
+    email = fields.EmailField()
+    cell_Phone = fields.IntField(max_length=10,min_length=10)
 
-class adminUser(User):
-    # USERNAME_FIELD = 'username'
-    # # email=fields.EmailField()
-    # # passw=fields.StringField(max_length=30)
-    # # REQUIRED_FIELDS =([email,passw])
-    #
-    # REQUIRED_FIELDS =(['email'])
-    pass
+    def __str__(self):
+        return '%s - %s -%s -%s -%s' % (self.name, self.last_Name, self.address, self.email, self.cell_Phone)
 
 
+class Item(document.Document):
+    name = fields.StringField(max_length=30)
+    seccion = fields.StringField(max_length=30)
+    cost = fields.FloatField(max_length=10)
+    discount = fields.IntField(max_length=2,blank=True)
 
-class Customers(Document):
-    Name = fields.StringField(max_length=30)
-    Last_Name = fields.StringField(max_length=30)
-    Address = fields.StringField(max_length=30)
-    Email = fields.EmailField()
-    Cell_Phone = fields.IntField(max_length=10,min_length=10)
+    def __str__(self):
+        return '%s - %s -%s -%s' % (self.name, self.seccion, self.cost, self.discount)
 
-class Items(Document):
-    Name = fields.StringField(max_length=30)
-    Seccion = fields.StringField(max_length=30)
-    Cost = fields.FloatField(max_length=10)
-    Discount = fields.IntField(max_length=2,blank=True)
+class Order(document.Document):
+    no_Order = fields.IntField(max_length=20)
+    date = fields.DateTimeField()
+    status = fields.BooleanField()
 
-class Orders(Document):
-    No_Order = fields.IntField(max_length=20)
-    Date = fields.DateTimeField()
-    Status = fields.BooleanField()
+    def __str__(self):
+        return '%s - %s -%s' % (self.no_Order, self.date, self.status)
+
+
+class FContacto(document.Document):
+    subject=fields.StringField(max_length=70)
+    email=fields.EmailField()
+    message=fields.StringField(max_length=500)
+
+    def __str__(self):
+        return '%s - %s -%s' % (self.subject, self.email, self.message)

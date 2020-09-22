@@ -3,12 +3,3 @@ from django.core.exceptions import FieldDoesNotExist                de  ENV\Lib\
                                                                         ENV\Lib\site-packages\django_mongoengine\mongo_admin\templatetags\documenttags.py
 
 from django.forms.utils import ErrorDict, ErrorList, pretty_name    de ENV\Lib\site-packages\django\forms\forms.py
-
-self.dj_model.REQUIRED_FIELDS = self.model.REQUIRED_FIELDS          de ENV\Lib\site-packages\django_mongoengine\mongo_auth\managers.py
-    for name in self.dj_model.REQUIRED_FIELDS:
-            # field = EmailField(_(name), max_length=30)
-            # field.contribute_to_class(self.dj_model, name)
-            field = CharField(_(name), max_length=30)
-            field.contribute_to_class(self.dj_model, name)
-    # field = CharField('password', max_length=30)
-    # field.contribute_to_class(self.dj_model, 'password')
