@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+{% extends "Base.html" %}
+
+{% block content %}
+  {% include "barra.html"%}
+  <p>Estas buscando: <strong>{{query}}</strong></p>
+  {% if articulos %}
+    <p>Articulos Encontrados: {{articulos|length}} articulos</p>
+
+    <ul>
+      {% for articulo in articulos %}
+        <li>{{articulo.name}}</li>
+      {% endfor %}
+
+    </ul>
+  {% else %}
+    <p>Articulo no encontrado</p>
+  {% endif %}
+{% endblock %}
