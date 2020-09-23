@@ -27,9 +27,9 @@ urlpatterns = [
 ]
 
 if settings.DEBUG:
-    # urlpatterns += static(
-    #     '/media/', document_root=settings.MEDIA_ROOT, show_indexes=True
-    # )
+    urlpatterns += static(
+        '/media/', document_root=settings.MEDIA_ROOT, show_indexes=True
+    )
     urlpatterns += static(
         '/static/', document_root=settings.STATIC_ROOT, show_indexes=True
     )

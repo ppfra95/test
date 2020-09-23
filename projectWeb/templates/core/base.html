@@ -33,19 +33,19 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarResponsive">
           <ul class="navbar-nav mx-auto">
-            <li class="nav-item active px-lg-4">
+            <li class="nav-item {% if request.path == '/' %}active{% endif %} px-lg-4">
               <a class="nav-link text-uppercase text-expanded" href="{% url 'home' %}">Inicio</a>
             </li>
-            <li class="nav-item px-lg-4">
+            <li class="nav-item {% if request.path == '/service/' %}active{% endif %} px-lg-4">
               <a class="nav-link text-uppercase text-expanded" href="{% url 'service' %}">Servicios</a>
             </li>
-            <li class="nav-item px-lg-4">
+            <li class="nav-item {% if request.path == '/store/' %}active{% endif %} px-lg-4">
               <a class="nav-link text-uppercase text-expanded" href="{% url 'store' %}">Tienda</a>
             </li>
-            <li class="nav-item px-lg-4">
+            <li class="nav-item {% if request.path == '/contact/' %}active{% endif %} px-lg-4">
               <a class="nav-link text-uppercase text-expanded" href="{% url 'contact' %}">Contacto</a>
             </li>
-            <li class="nav-item px-lg-4">
+            <li class="nav-item {% if request.path == '/blog/' %}active{% endif %} px-lg-4">
               <a class="nav-link text-uppercase text-expanded" href="{% url 'blog' %}">Blog</a>
             </li>
 
