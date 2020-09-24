@@ -2,44 +2,46 @@ from django_mongoengine import document, fields
 from django_mongoengine.mongo_auth.models import User
 from mongoengine import *
 import datetime
-from PIL import Image
+from PIL import Image, ImageShow
 from django.conf import settings
+import pymongo.errors
 
 
 class Service(document.Document):
     title = fields.StringField(max_length=50)
     content = fields.StringField(max_length=200)
     image = fields.ImageField()
-    created = fields.DateTimeField(defaul=datetime.datetime.now)
-    updated = fields.DateTimeField(defaul=datetime.datetime.now)
+    created = fields.DateTimeField()
+    updated = fields.DateTimeField()
 
     class Meta:
         verbose_name = ['Service']
         verbose_name_plural = ['Services']
 
-    # def __str__(self):
-    #     return '%s - %s -%s -%s -%s' % (self.title, self.content, self.created,
-    #             self.updated)
+    def clean(self):
+        errors = {}
+
+        if Service.objects(title__exact=self.title).count() != 0:
+            errors[self.title] = ValidationError(
+                                """Campo repetido, actualize el
+                                existente o cree uno nuevo""",
+                                field_name=self.title)
+
+        if errors:
+            raise ValidationError('ValidationError', errors=errors)
+
     def __str__(self):
-        return '%s' % (self.image)
+        return '%s - Creado %s - Actualizado %s' % (self.title, self.created,
+                self.updated)
 
     def save(self, *args, **kwargs):
+        path ="."+settings.MEDIA_URL+self.title+".jpg"
+
         if not self.created:
             self.created = datetime.datetime.now()
-            # self.image.put()
+            img = Image.open(self.image)
+            Image.Image.save(img,fp=path,formato="JPEG")
         self.updated = datetime.datetime.now()
-
-        img = Image.open(self.image)
-        # img.show()
-        Image.Image.save(img,fp=settings.MEDIA_URL+"1.PNG",formato="PNG")
-        # print(self.image._fs)
-        # print(self.image.grid_id)
-        # print(self.image.key)
-        # print(self.image.instance)
-        # print(self.image.db_alias)
-        # print(self.image.collection_name)
-        # print(self.image.newfile)
-        # print(self.image.gridout)
-
+        self.image.replace(path, content_type='image/JPEG')
 
         return super(Service, self).save(*args, **kwargs)
