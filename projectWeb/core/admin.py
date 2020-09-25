@@ -13,18 +13,23 @@ class GroupAdmin(admin.DocumentAdmin):
 class UserAdmin(admin.DocumentAdmin):
      pass
 
+
 # register the customs models
 @admin.register(Service)
 class ServiceAdmin(admin.DocumentAdmin):
     readonly_fields=('created','updated')
+    exclude = ('url_image',)
     pass
-#
-#
-# @admin.register(Order)
-# class OrderAdmin(admin.DocumentAdmin):
-#      pass
-#
-#
-# @admin.register(Item)
-# class ItemAdmin(admin.DocumentAdmin):
-#      pass
+
+
+@admin.register(Category)
+class CategoryAdmin(admin.DocumentAdmin):
+    readonly_fields=('created','updated')
+    pass
+
+
+@admin.register(Post)
+class PostAdmin(admin.DocumentAdmin):
+    readonly_fields=('created','updated')
+    exclude = ('url_image',)
+    pass

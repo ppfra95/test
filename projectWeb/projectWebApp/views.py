@@ -9,9 +9,6 @@ from django.conf import settings
 def home(request):
     return render(request, 'home.html')
 
-def service(request):
-    return render(request, 'service.html')
-
 def store(request):
     return render(request, 'store.html')
 

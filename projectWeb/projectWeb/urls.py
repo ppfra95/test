@@ -24,6 +24,7 @@ urlpatterns = [
     # path('admin/', admin.site.urls),
     path('admin/', mongo_admin.site.urls),
     path('', include('projectWebApp.urls')),
+    path('service/', include('service.urls')),
 ]
 
 if settings.DEBUG:

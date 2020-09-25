@@ -3,3 +3,14 @@ from django.core.exceptions import FieldDoesNotExist                de  ENV\Lib\
                                                                         ENV\Lib\site-packages\django_mongoengine\mongo_admin\templatetags\documenttags.py
 
 from django.forms.utils import ErrorDict, ErrorList, pretty_name    de ENV\Lib\site-packages\django\forms\forms.py
+
+Complementos de atom
+
+pigments
+atom-beautify
+Minimap
+file-icons
+PlatformIO IDE Terminal
+color-picker    ctrl+shift+c
+goto-definition   Alt+Cmd+Enter
+highlight-selected
