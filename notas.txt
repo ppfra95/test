@@ -4,6 +4,12 @@ from django.core.exceptions import FieldDoesNotExist                de  ENV\Lib\
 
 from django.forms.utils import ErrorDict, ErrorList, pretty_name    de ENV\Lib\site-packages\django\forms\forms.py
 
+
+https://angular.io/guide/setup-local
+https://vercel.com/signup
+
+ng install -g now
+
 Complementos de atom
 
 pigments

@@ -1,0 +1,53 @@
+@charset "UTF-8";
+
+/* reset css */
+html,body,h1,h2,h3,h4,h5,h6,p,li,ul,ol,pre,code,address,form,fieldset{
+  padding: 0;
+  margin: 0;
+  font-weight: normal;
+  font-size: 100%;
+}
+
+ol{
+  margin-left: 1.4em;
+  list-style: decimal;
+}
+ul{
+  margin-left: 1.4em;
+  list-style: square;
+}
+img{
+  border: 0;
+}
+/* fin del reset */
+
+#principal{
+  float: left;
+  width: 580px;
+}
+
+#lateral{
+  margin-left: 600px;
+  padding: 15px;
+  background-color: rgb(221, 182, 231);
+}
+
+body{
+  color:rgb(209, 178, 45);
+  font-family: "Palatino Linotype", "Book Antique", Palatino, serif;
+  padding-top: 100px;
+  background: rgb(221, 182, 231) url(images/fondo_cuerpo.png) repeat-x;
+  width: 800px ;
+  margin: 0 auto;
+}
+
+h1{
+  font-size: 3em;
+  font-family: "Arial Black", Gadget, sans-serif;
+}
+
+h2{
+  font-size: 2.2em;
+  color:#600;
+  margin-bottom: 5px;
+}

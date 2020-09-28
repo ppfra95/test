@@ -1,0 +1,30 @@
+@charset "UTF-8";
+/* css Document */
+
+p{
+  font-family: Tahoma, Geneva, sans-serif;
+  color:red;
+  font-size: 18px;
+}
+
+body{
+  background-color: rgb(203, 251, 236);
+}
+
+.estilo2{
+  font-family: Tahoma, Geneva, sans-serif;
+  color:white;
+}
+
+#tabla{
+  background-color: rgb(181, 223, 177);
+  border-color: rgb(214, 154, 50)
+}
+
+li a{
+  color: rgb(66, 227, 33);
+}
+
+li a strong{
+  color: rgb(245, 2, 206)
+}
