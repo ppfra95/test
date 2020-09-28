@@ -14,3 +14,9 @@ PlatformIO IDE Terminal
 color-picker    ctrl+shift+c
 goto-definition   Alt+Cmd+Enter
 highlight-selected
+atom-liquid-snippets
+Minimap git
+minimap-highlight-selected
+Atom HTML Preview  CTRL-SHIFT-H
+BrowserPlus ctrl-alt-o
+pp
