@@ -29,14 +29,14 @@ img{
 #lateral{
   margin-left: 600px;
   padding: 15px;
-  background-color: rgb(221, 182, 231);
+  background-color: #e1cdff;
 }
 
 body{
-  color:rgb(209, 178, 45);
+  color:#b1967c;
   font-family: "Palatino Linotype", "Book Antique", Palatino, serif;
   padding-top: 100px;
-  background: rgb(221, 182, 231) url(images/fondo_cuerpo.png) repeat-x;
+  background: #e1cdff url(images/fondo_cuerpo.png) repeat-x;
   width: 800px ;
   margin: 0 auto;
 }
@@ -50,4 +50,27 @@ h2{
   font-size: 2.2em;
   color:#600;
   margin-bottom: 5px;
+}
+
+#principal h2{
+    color:#e8a064;
+    border-bottom: 2px white solid;
+    background: url(images/flor.png) no-repeat;
+    padding: 0 0 2px 80px
+}
+
+#principal p{
+  color: #616161;
+  font-family: "Palatino Linotype", "Book Antique", Palatino, serif;
+  font-size: 1.1em;
+  line-height: 150%;
+  margin: 2px 0 10px 80px;
+}
+
+#principal .introduccion{
+  color:Black;
+  font-family: Arial, Malvetica, sans-serif;
+  font-size: 1.2em;
+  margin-left: 0px;
+  margin-bottom: 25px;
 }
