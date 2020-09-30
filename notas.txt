@@ -27,3 +27,8 @@ minimap-highlight-selected
 Atom HTML Preview  CTRL-SHIFT-H
 BrowserPlus ctrl-alt-o
 pp
+liveserver
+
+
+
+https://manu.ninja/webgl-3d-model-viewer-using-three-js/

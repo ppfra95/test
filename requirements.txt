@@ -1,5 +1,8 @@
 Django
-django-mongoengine>=0.4.2,<0.5.0
+django-mongoengine
 six
 pymongo[srv]
 Pyllow
+djangorestframework
+django-rest-framework-mongoengine
+pymysql
