@@ -2,7 +2,9 @@ Django
 django-mongoengine
 six
 pymongo[srv]
-Pyllow
 djangorestframework
 django-rest-framework-mongoengine
-pymysql
+mysqlclient
+Pillow
+django-cors-headers
+psycopg2
