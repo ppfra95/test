@@ -1,44 +1,58 @@
-from django_mongoengine import document, fields
-from django_mongoengine.mongo_auth.models import AbstractUser
-from mongoengine import *
+import binascii
+import os
+
+# from db_conns import MongoEngineConn
+from django_mongoengine.mongo_auth.models import User, AbstractUser, make_password
+from mongoengine import document, fields, CASCADE, signals
+
+# MongoEngineConn()
+
+__all__ = ['Token', 'Customer']
+
+
+
+
+# signals.pre_save.connect(Token.pre_save, sender=Token)
 
 
 class Customer(AbstractUser):
-    name = fields.StringField(max_length=30)
-    last_Name = fields.StringField(max_length=30)
     age=fields.IntField(max_length=3,min_length=1)
     address = fields.StringField(max_length=30)
     email = fields.EmailField()
-    password = fields.StringField(min_length=5)
     cell_Phone = fields.IntField(max_length=10,min_length=10)
     username =fields.StringField(blank=True)
 
     def __str__(self):
-        return '%s - %s -%s -%s -%s -%s' % (self.name, self.password, self.last_Name, self.address, self.email, self.cell_Phone)
+        return '%s - %s' % (self.first_name, self.email)
 
-#
-# class Item(document.Document):
-#     name = fields.StringField(max_length=30)
-#     seccion = fields.StringField(max_length=30)
-#     cost = fields.FloatField(max_length=10)
-#     discount = fields.IntField(max_length=2,blank=True)
-#
-#     def __str__(self):
-#         return '%s - %s -%s -%s' % (self.name, self.seccion, self.cost, self.discount)
-#
-# class Order(document.Document):
-#     no_Order = fields.IntField(max_length=20)
-#     date = fields.DateTimeField()
-#     status = fields.BooleanField()
-#
-#     def __str__(self):
-#         return '%s - %s -%s' % (self.no_Order, self.date, self.status)
-#
-#
-# class FContacto(document.Document):
-#     subject=fields.StringField(max_length=70)
-#     email=fields.EmailField()
-#     message=fields.StringField(max_length=500)
-#
-#     def __str__(self):
-#         return '%s - %s -%s' % (self.subject, self.email, self.message)
+    def save(self, *args, **kwargs):
+        self.password=make_password(self.password)
+        self.username=self.email
+        return super(Customer, self).save(*args, **kwargs)
+
+class Token(document.Document):
+    """
+    The default authorization token model.
+    """
+    key = fields.StringField(required=True, max_length=40)
+    user = fields.ReferenceField(
+        Customer, verbose_name='username',
+        reverse_delete_rule=CASCADE, null=True
+    )
+    created = fields.DateTimeField(auto_now_add=True)
+
+    meta = {
+        'indexes': ['key', ],
+        'collection': 'user_token'
+    }
+
+    @classmethod
+    def pre_save(cls, sender, document, **kwargs):
+        if not document.key:
+            document.key = document.generate_key()
+
+    def generate_key(self):
+        return binascii.hexlify(os.urandom(20)).decode()
+
+    def __str__(self):
+        return self.key

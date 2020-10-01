@@ -8,3 +8,5 @@ mysqlclient
 Pillow
 django-cors-headers
 psycopg2
+blinker
+redis
