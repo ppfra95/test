@@ -6,10 +6,12 @@ class CustomerSerializer(serializers.DocumentSerializer):
 
     class Meta:
         model = Customer
-        fields = ('id',
-                  'name',
-                  'last_Name',
-                  'age',
-                  'address',
-                  'email',
-                  'cell_Phone')
+        fields = '__all__'
+        # fields = ('id',
+        #           'name',
+        #           'last_Name',
+        #           'age',
+        #           'address',
+        #           'email',
+        #           'password',
+        #           'cell_Phone')

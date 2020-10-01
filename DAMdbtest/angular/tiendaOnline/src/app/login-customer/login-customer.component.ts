@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 
+import { CustomerService } from '../customer.service';
+import { Customer } from '../customer';
+
 @Component({
   selector: 'app-login-customer',
   templateUrl: './login-customer.component.html',
@@ -7,9 +10,25 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LoginCustomerComponent implements OnInit {
 
-  constructor() { }
+  email:string;
+  password:string;
+  customers: Customer[];
 
-  ngOnInit(): void {
+  constructor(private dataService: CustomerService) { }
+
+  ngOnInit() {
+    this.email="";
+    this.password="";
+  }
+
+  reloadData() {
+    this.customers = [];
+    this.dataService.loginCustomer(this.email,this.password)
+      .subscribe(customers => this.customers = customers);
+  }
+
+  onSubmit() {
+    this.reloadData();
   }
 
 }

@@ -38,4 +38,13 @@ export class CustomerService {
   deleteAll(): Observable<any> {
     return this.http.delete(`${this.baseUrl}/`);
   }
+
+  loginCustomer(email:string, password:string): Observable<any> {
+    return this.http.get(`${this.baseUrl}/login/${email}/${password}/`);
+  }
+  // loginCustomer(email:string): Observable<any> {
+  //   return this.http.get(`${this.baseUrl}/login/${email}/`);
+  // }
+
+
 }

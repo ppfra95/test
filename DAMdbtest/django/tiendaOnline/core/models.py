@@ -1,18 +1,19 @@
 from django_mongoengine import document, fields
-from django_mongoengine.mongo_auth.models import User
+from django_mongoengine.mongo_auth.models import AbstractUser
 from mongoengine import *
 
 
-class Customer(document.Document):
+class Customer(AbstractUser):
     name = fields.StringField(max_length=30)
     last_Name = fields.StringField(max_length=30)
     age=fields.IntField(max_length=3,min_length=1)
     address = fields.StringField(max_length=30)
     email = fields.EmailField()
+    password = fields.StringField(min_length=5)
     cell_Phone = fields.IntField(max_length=10,min_length=10)
 
     def __str__(self):
-        return '%s - %s -%s -%s -%s' % (self.name, self.last_Name, self.address, self.email, self.cell_Phone)
+        return '%s - %s -%s -%s -%s -%s' % (self.name, self.password, self.last_Name, self.address, self.email, self.cell_Phone)
 
 #
 # class Item(document.Document):
