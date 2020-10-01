@@ -11,6 +11,7 @@ class Customer(AbstractUser):
     email = fields.EmailField()
     password = fields.StringField(min_length=5)
     cell_Phone = fields.IntField(max_length=10,min_length=10)
+    username =fields.StringField(blank=True)
 
     def __str__(self):
         return '%s - %s -%s -%s -%s -%s' % (self.name, self.password, self.last_Name, self.address, self.email, self.cell_Phone)

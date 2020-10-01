@@ -5,5 +5,6 @@ export class Customer {
   age:number;
   address:string;
   email:string;
+  password:string;
   cell_Phone:number;
 }

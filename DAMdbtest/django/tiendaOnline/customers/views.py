@@ -21,6 +21,7 @@ def customer_list(request):
 
     elif request.method == 'POST':
         customer_data = JSONParser().parse(request)
+        print(customer_data)
         customer_serializer = CustomerSerializer(data=customer_data)
         if customer_serializer.is_valid():
             customer_serializer.save()
