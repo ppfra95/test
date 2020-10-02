@@ -10,13 +10,34 @@ from mongoengine import document, fields, CASCADE, signals
 __all__ = ['Token', 'Customer']
 
 
+
+
+# signals.pre_save.connect(Token.pre_save, sender=Token)
+
+
+class Customer(User):
+    age=fields.IntField(max_length=3,min_length=1)
+    address = fields.StringField(max_length=30)
+    email = fields.EmailField()
+    cell_Phone = fields.IntField(max_length=10,min_length=10)
+    username =fields.StringField(blank=True)
+
+    def __str__(self):
+        return '%s - %s' % (self.first_name, self.email)
+
+    def save(self, *args, **kwargs):
+        self.password=make_password(self.password)
+        self.username=self.email
+        return super(Customer, self).save(*args, **kwargs)
+
+
 class Token(document.Document):
     """
     The default authorization token model.
     """
     key = fields.StringField(required=True, max_length=40)
     user = fields.ReferenceField(
-        User, verbose_name='Usuario',
+        Customer, verbose_name='username',
         reverse_delete_rule=CASCADE, null=True
     )
     created = fields.DateTimeField(auto_now_add=True)
@@ -36,21 +57,3 @@ class Token(document.Document):
 
     def __str__(self):
         return self.key
-
-# signals.pre_save.connect(Token.pre_save, sender=Token)
-
-
-class Customer(AbstractUser):
-    age=fields.IntField(max_length=3,min_length=1)
-    address = fields.StringField(max_length=30)
-    email = fields.EmailField()
-    cell_Phone = fields.IntField(max_length=10,min_length=10)
-    username =fields.StringField(blank=True)
-
-    def __str__(self):
-        return '%s - %s' % (self.first_name, self.email)
-
-    def save(self, *args, **kwargs):
-        self.password=make_password(self.password)
-        self.username=self.email
-        return super(Customer, self).save(*args, **kwargs)
