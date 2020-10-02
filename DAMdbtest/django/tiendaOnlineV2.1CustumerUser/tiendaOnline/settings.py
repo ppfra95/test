@@ -111,7 +111,6 @@ MONGODB_DATABASES = {
     },
 }
 AUTH_USER_MODEL = 'mongo_auth.MongoUser'
-
 AUTHENTICATION_BACKENDS = (
     'django_mongoengine.mongo_auth.backends.MongoEngineBackend',
 )

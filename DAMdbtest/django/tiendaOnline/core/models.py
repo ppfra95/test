@@ -34,6 +34,10 @@ class Token(document.Document):
     def generate_key(self):
         return binascii.hexlify(os.urandom(20)).decode()
 
+    def save(self, *args, **kwargs):
+        self.key=generate_key()
+        return super(Token, self).save(*args, **kwargs)
+
     def __str__(self):
         return self.key
 
